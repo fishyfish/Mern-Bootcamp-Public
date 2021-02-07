@@ -2,12 +2,12 @@
 import './App.css';
 import logo from './pokeapi.png';
 import React, {useState, useEffect} from 'react';
+import Contests from './components/Contests';
 
 function App() {
     const [ pokemon, setPokemon ] = useState([]);
     const [ pokemonCount, setPokemonCount ] = useState([0]);
     const [ contestCount, setContestCount ] = useState([]);
-    const [ contestUrl, setContestUrl ] = useState([]);
 
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/pokemon?limit=1118")
@@ -62,39 +62,12 @@ function App() {
         
         })
     }, [])
-    const displayContests = () => {
-        fetch("https://pokeapi.co/api/v2/contest-type/")
-        .then((response) => {
-        response.json()
-            .then((jsonResponse) => {
-            console.log(jsonResponse);
-            setContestUrl(jsonResponse.results); // results not url ding bat
-            })
-            .catch((jsonError) => {
-            console.log(jsonError);
-            })
-        })
-        .catch((error) => {
-        console.log(error);
-        
-        })
-};
 
     return (
         <div className="App">
             <img src={logo} alt="Pokemon Logo" />
             <h2>{contestCount} Pokemon Contests</h2>
-            <ol className="pokemon contest"> 
-            <button className="pokemonBtn" onClick={displayContests}>Display Contests</button>
-            {
-                contestUrl.map((contestUrl, index) => (
-                <li key={index}>
-                    <span className=""><label>Name:</label> {contestUrl.name } </span>
-                    <span className=""><label>Url:</label> <a href={contestUrl.url }>{contestUrl.url }</a></span>
-                </li>
-                ))
-            }
-            </ol> 
+            <Contests />
             <h1>{pokemonCount} Pokemon's &amp; Counting!</h1>
             <ol className="pokemon">
         {
