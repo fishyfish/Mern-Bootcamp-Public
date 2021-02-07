@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Router, Link } from '@reach/router';
 
 function Contests(props) {
     const {count} = props;
-    const [ contestCount, setContestCount ] = useState(0);
-    const [ pokemon, setPokemon ] = useState([]);
+    // const [ contestCount, setContestCount ] = useState(0);
+    // const [ pokemon, setPokemon ] = useState([]);
     const [ contestUrl, setContestUrl ] = useState([]);
 
     const buttonClick = () => {
-        fetch ("https://pokeapi.co/api/v2/contest-type")
+        axios.get("https://pokeapi.co/api/v2/contest-type")
         .then((response) => {
             console.log(response);
-            setPokemon(response.data.results);
-            setContestCount(response.data.count);
+            // setPokemon(response.data.results);
+            // setContestCount(response.data.count);
+            setContestUrl(response.data.url);
         })
         .catch((error)=> {
             console.log(error);
@@ -20,26 +22,23 @@ function Contests(props) {
     };
 
     return (
-        <div className="App">
-            <h4>Tot</h4>
-            <button onClick={buttonClick}>Click the DingDang Button</button>
-            <ol className="pokemon contest">
-                { console.log('Countest Count', contestCount ) }
-                { console.log('Countest Results', contestUrl.url ) }
-                <h3>Contest Count: {contestCount}</h3>
+        <div>
+            <h3>nothing is here holmes.</h3>
+            <button onClick={buttonClick}>Show Pokemon Contests!</button>
+                {
+                <ol className="pokemon contest"> 
                 {
                     contestUrl.map((contestUrl, index) => (
                         <li key={index}>
                             <span className="nobreak">{ contestUrl.url }</span>
                         </li>
-                        ))
+                    ))
                 }
-            </ol>
+                </ol> 
+                }
         </div>
     );
 }
-
-
 
 export default Contests;
 
