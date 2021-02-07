@@ -2,12 +2,6 @@
 import './App.css';
 import logo from './pokeapi.png';
 import React, {useState, useEffect} from 'react';
-import { Router } from '@reach/router';
-import { Link } from '@reach/router';
-import { Navigate } from '@reach/router';
-import axios from 'axios';
-import Contests from './components/Contests';
-// import Pokemon from './components/Pokemon';
 
 function App() {
     const [ pokemon, setPokemon ] = useState([]);
@@ -52,7 +46,7 @@ function App() {
     }, [])
 
     useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/contest-type")
+        fetch("https://pokeapi.co/api/v2/contest-type/")
         .then((response) => {
         response.json()
             .then((jsonResponse) => {
@@ -68,19 +62,41 @@ function App() {
         
         })
     }, [])
+    const displayContests = () => {
+        fetch("https://pokeapi.co/api/v2/contest-type/")
+        .then((response) => {
+        response.json()
+            .then((jsonResponse) => {
+            console.log(jsonResponse);
+            setContestUrl(jsonResponse.results); // results not url ding bat
+            })
+            .catch((jsonError) => {
+            console.log(jsonError);
+            })
+        })
+        .catch((error) => {
+        console.log(error);
+        
+        })
+};
 
     return (
         <div className="App">
             <img src={logo} alt="Pokemon Logo" />
             <h2>{contestCount} Pokemon Contests</h2>
-    
-                <Router>
-                    <Contests path="/Contests" />
-                </Router>
-         
+            <ol className="pokemon contest"> 
+            <button className="pokemonBtn" onClick={displayContests}>Display Contests</button>
+            {
+                contestUrl.map((contestUrl, index) => (
+                <li key={index}>
+                    <span className=""><label>Name:</label> {contestUrl.name } </span>
+                    <span className=""><label>Url:</label> <a href={contestUrl.url }>{contestUrl.url }</a></span>
+                </li>
+                ))
+            }
+            </ol> 
             <h1>{pokemonCount} Pokemon's &amp; Counting!</h1>
             <ol className="pokemon">
-            { console.log(useEffect) }
         {
             pokemon.map((pokemon, index) => (
             <li key={index}>

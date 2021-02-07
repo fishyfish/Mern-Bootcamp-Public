@@ -3,7 +3,7 @@ body {
 }
 
 .App {
-  max-width: 400px;
+  max-width: 500px;
   margin: 35px auto;
 }
 
@@ -72,6 +72,21 @@ h3 {
   background: #ffffcc;
 }
 
+.pokemon.contest span {
+  display:block;
+}
+
+.pokemon.contest a:link,
+.pokemon.contest a:visited,
+.pokemon.contest a::after,
+.pokemon.contest a:active {
+  color: green;
+  cursor: pointer;
+}
+
+.pokemon.contest label {
+  font-weight: bold;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
