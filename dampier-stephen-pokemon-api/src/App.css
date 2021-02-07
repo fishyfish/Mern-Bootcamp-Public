@@ -82,6 +82,16 @@ h3 {
 .pokemon.contest a:active {
   color: green;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.pokemon.contest li:nth-child(even) a:link,
+.pokemon.contest li:nth-child(even) a:visited,
+.pokemon.contest li:nth-child(even) a::after,
+.pokemon.contest li:nth-child(even) a:active {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .pokemon.contest label {

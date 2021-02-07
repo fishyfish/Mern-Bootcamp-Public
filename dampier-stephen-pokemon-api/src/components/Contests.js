@@ -28,8 +28,7 @@ function Contests(props) {
             {
                 contestUrl.map((contestUrl, index) => (
                 <li key={index}>
-                    <span className=""><label>Name:</label> {contestUrl.name } </span>
-                    <span className=""><label>Url:</label> <a href={contestUrl.url }>{contestUrl.url }</a></span>
+                    <span className=""><label>Name:</label>  <a href={contestUrl.url }>{contestUrl.name } </a></span>
                 </li>
                 ))
             }
