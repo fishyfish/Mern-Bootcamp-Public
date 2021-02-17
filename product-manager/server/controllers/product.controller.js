@@ -1,3 +1,4 @@
+const { response } = require('express');
 const Product = require('../models/product.model');    /* this is new */
 module.exports.index = (request, response) => {
     response.json({
@@ -14,4 +15,10 @@ module.exports.createProduct = (request, response) => {
     })
         .then(product => response.json(product))
         .catch(err => response.json(err));
+}
+
+module.exports.getAllProducts = (request, response) => {
+    Product.find({})
+    .then (AllProducts => response.json(AllProducts))
+    .catch(err => response.json(err));
 }
