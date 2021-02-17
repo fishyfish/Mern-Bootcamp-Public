@@ -22,3 +22,9 @@ module.exports.getAllProducts = (request, response) => {
     .then (AllProducts => response.json(AllProducts))
     .catch(err => response.json(err));
 }
+
+module.exports.deleteProduct = (request, response) => {
+    Product.find({})
+    .then (AllProducts => response.json(AllProducts))
+    .catch(err => response.json(err));
+}
