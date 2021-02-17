@@ -1,4 +1,5 @@
 const { response } = require('express');
+const { findById } = require('../models/product.model');
 const Product = require('../models/product.model');    /* this is new */
 module.exports.index = (request, response) => {
     response.json({
@@ -24,7 +25,17 @@ module.exports.getAllProducts = (request, response) => {
 }
 
 module.exports.deleteProduct = (request, response) => {
-    Product.find({})
+    Product.findById(reg.params.id)
     .then (AllProducts => response.json(AllProducts))
     .catch(err => response.json(err));
 }
+
+
+// module.exports = function(app){
+//     app.get('/api', ProductController.index);
+//     app.post('/api/products', ProductController.createProduct);     /* This is new */
+//     app.get('/api/products', ProductController.getAllProducts);
+//     app.get('/api/products', ProductController.getOneProduct);
+//     app.delete('/api/products', ProductController.deleteProduct);
+//     app.put('/api/products', ProductController.putProduct);
+// }

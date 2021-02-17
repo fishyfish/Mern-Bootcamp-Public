@@ -58,7 +58,7 @@ update: (req,res) => {
 delete: (req,res) => {
     // remove a single skiff by ID
     console.log("Trying to remove this " + req.params.id);
-    TolmanSkiff.findByIdAndUpdate(req.params.id)
+    TolmanSkiff.findByIdAndDelete(req.params.id, req.body,)
     .then((removedSkiff) => {
         console.log("Removed this skiff " + removedSkiff);
         res.json(removedSkiff);
