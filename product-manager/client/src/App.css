@@ -124,6 +124,29 @@ h1.centerme{
   position: relative;
 }
 
+#results {
+  color: white;
+}
+
+em {
+  display: inline-block;
+  font-weight: bold;
+  font-style: normal;
+}
+
+ol li {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+ol li:nth-child(even) {
+  background: #333;
+}
+
+.newLine {
+  display:block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

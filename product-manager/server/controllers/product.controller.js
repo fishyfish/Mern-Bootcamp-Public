@@ -1,12 +1,17 @@
+const { default: axios } = require('axios');
 const { response } = require('express');
 const { findById } = require('../models/product.model');
 const Product = require('../models/product.model');    /* this is new */
+
 module.exports.index = (request, response) => {
     response.json({
         message: "My Foot Hurts"
     });
 }
-          /* The method below is new */
+
+/* The method below is new */
+
+// This works
 module.exports.createProduct = (request, response) => {
     const { title, price,description } = request.body;
     Product.create({
@@ -18,24 +23,49 @@ module.exports.createProduct = (request, response) => {
         .catch(err => response.json(err));
 }
 
+// This works
 module.exports.getAllProducts = (request, response) => {
     Product.find({})
-    .then (AllProducts => response.json(AllProducts))
+    .then (product => response.json(product))
     .catch(err => response.json(err));
 }
 
+// This works
+
+module.exports.getOneProduct = (request,response) => {
+    // get a single product by ID
+    Product.findById(request.params.id)
+    .then((oneProduct) => {
+        console.log(oneProduct);
+        response.json(oneProduct);
+    })
+    .catch((err) => {
+        console.log('error in getOneProduct: ' + err);
+        response.json(err);
+    })
+}
+
+// This works
+module.exports.updateProduct = (request, response) => {
+    Product.findByIdAndUpdate(request.params.id,request.body,)
+    .then((updatedProduct) => {
+        console.log(updatedProduct);
+        response.json(updatedProduct);
+    })
+    .catch(err => response.json(err));
+}
+
+// This works
 module.exports.deleteProduct = (request, response) => {
-    Product.findById(reg.params.id)
-    .then (AllProducts => response.json(AllProducts))
+    Product.findByIdAndDelete(request.params.id,response.body,)
+    .then((removedProduct) => {
+        console.log(removedProduct);
+        response.json(removedProduct);
+    })
+
     .catch(err => response.json(err));
 }
 
 
-// module.exports = function(app){
-//     app.get('/api', ProductController.index);
-//     app.post('/api/products', ProductController.createProduct);     /* This is new */
-//     app.get('/api/products', ProductController.getAllProducts);
-//     app.get('/api/products', ProductController.getOneProduct);
-//     app.delete('/api/products', ProductController.deleteProduct);
-//     app.put('/api/products', ProductController.putProduct);
-// }
+
+
