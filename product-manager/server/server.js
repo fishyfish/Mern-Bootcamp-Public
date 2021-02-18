@@ -8,4 +8,5 @@ app.use(express.urlencoded({ extended: true }));   /* This is new */
 require('./routes/product.routes')(app);
 app.listen(8000, () => {
     console.log(`Listening at Port 8000 I think. Are you sure? `)
+    // how can I get this thing to refresh after inserting data?
 })

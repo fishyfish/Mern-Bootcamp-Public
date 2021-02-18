@@ -13,8 +13,10 @@ function App() {
         <ProductDetail path="/products/:id" />
       </Router> */}
       <Main path="/products/" />
-      <ProductDetail path="/products/:id" />
+      {/* <ProductDetail path="/products/:id" /> */}
+      
     </div>
   );
 }
+
 export default App;

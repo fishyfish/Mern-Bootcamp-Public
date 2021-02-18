@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+
 const ProductDetail = (props) => {
     const [product, setProduct] = useState({})
     useEffect(() => {
