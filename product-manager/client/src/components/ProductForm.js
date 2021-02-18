@@ -38,7 +38,7 @@ const ProductForm = () => {
                 <input type="text" placeholder="Description" onChange = {(e)=>setDescription(e.target.value)}/>
             </p>
 
-            <button className="toggle-me" type="submit">Submit</button>
+            <button className="toggle-me" type="submit">Create</button>
             </div>
         </form>
     )
